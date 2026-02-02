@@ -6,15 +6,17 @@
     <title>Document</title>
 </head>
 <body>
-    the maggie is served
-    {{name}}
-    {% for item in ingredient %}
-        <p> {{item}} </p>
+    the team is 
+    {{ teamName }}
+    {{ captain }}
+    {% for player in playerList %}
+        <p> {{player}} </p>
     {% endfor %}
-    {% if time <= 2 %}
-        <p> The recipe is easy </p>    
+    {{ trophy }}
+    {% if trophy <= 5 %}
+        <p> The team is weak </p>    
     {% else %}
-        <p> The recipe is complicated </p>     
+        <p> The team is strong </p>     
     {% endif %}
 </body>
 </html>

@@ -30,4 +30,13 @@ def recipe(request):
         "ingredient":ingredient
     } 
     return render(request,"recipe.html",data)
-    
+
+def team(request):
+    playerList= ["Asta","Finral","Charmi","Zora"]
+    info = {
+        "teamName":"Black Bulls",
+        "captain":"Yami Sukehiro",
+        "playerList":playerList,
+        "trophy":9
+    }
+    return render(request,"team.html", info)    
