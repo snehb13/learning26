@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    the team is 
+    {{ teamName }}
+    {{ captain }}
+    {% for player in playerList %}
+        <p> {{player}} </p>
+    {% endfor %}
+    {{ trophy }}
+    {% if trophy <= 5 %}
+        <p> The team is weak </p>    
+    {% else %}
+        <p> The team is strong </p>     
+    {% endif %}
+</body>
+</html>
