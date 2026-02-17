@@ -1,0 +1,31 @@
+<h1>SERVICES LIST</h1>
+<a href="{% url 'createServicesWithForm'%}">CREATE SERVICES</a>  
+<a href="{% url 'sortServices' 1 %}"> asc</a>
+<a href="{% url 'sortServices' 2 %}"> desc</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Cost</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for srv in services  %}
+        <tr>
+            <td>{{srv.id}}</td>
+            <td>{{srv.name}}</td>
+            <td>{{srv.category}}</td>
+            <td>{{srv.cost}}</td>
+            <td>
+                {% comment %} <a href="{% url 'deleteServices' %}">DELETE</a> {% endcomment %}
+                 <a href = "{% url 'deleteServices' srv.id %}">DELETE</a>
+                 <a href="{% url 'updateServices' srv.id %}">update</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
