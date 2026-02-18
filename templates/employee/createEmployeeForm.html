@@ -1,7 +1,44 @@
-<h1>CRETAE EMPLOYEEFORM</h1>
-<a href="{% url 'employeeList' %}">Employee List</a>
-<form method="POST">
-    {% csrf_token %}
-    {{form}}
-    <input type="submit" value="Submit">
-</form>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card">
+
+    <!-- Title -->
+    <h1>Create Employee</h1>
+
+    <!-- Back button -->
+    <div class="button-group">
+
+        <form action="{% url 'employeeList' %}" method="get">
+            <button type="submit" class="btn btn-neutral">
+                ← Employee List
+            </button>
+        </form>
+
+    </div>
+
+    <!-- Form -->
+    <form method="POST" style="width:100%; max-width:500px; margin:auto;">
+
+        {% csrf_token %}
+
+        <!-- Django form fields -->
+        <div class="form-container">
+            {{ form }}
+        </div>
+
+        <!-- Submit button -->
+        <div style="margin-top: 20px; text-align: center;">
+
+            <button type="submit" class="btn btn-create">
+                Create Employee
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock content %}

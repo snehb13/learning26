@@ -1,5 +1,35 @@
-<form method ="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="update">
-</form>
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card">
+
+    <h1>Update Employee</h1>
+
+    <div class="button-group">
+        <form action="{% url 'employeeList' %}" method="get">
+            <button type="submit" class="btn btn-neutral">
+                ← Back to List
+            </button>
+        </form>
+    </div>
+
+    <form method="POST" style="max-width: 500px; margin: auto;">
+
+        {% csrf_token %}
+
+        <div class="form-container">
+            {{ form.as_p }}
+        </div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <button type="submit" class="btn btn-update">
+                Update Employee
+            </button>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock content %}

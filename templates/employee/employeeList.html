@@ -1,36 +1,95 @@
-<h1>EMPLOYEE LIST</h1>
-<a href="{% url 'createEmployeeWithForm'%}">CREATE EMPLOYEE</a>
-<a href ="{% url 'filterEmployee' %}">FILTER</a>   
-<a href="{% url 'sortEmployee' 1 %}"> asc</a>
-<a href="{% url 'sortEmployee' 2 %}"> desc</a>
+{% extends 'base.html' %}
 
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Salary</th>
-            <th>Join Date</th>
-            <th>Post</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for emp in employees  %}
-        <tr>
-            <td>{{emp.id}}</td>
-            <td>{{emp.name}}</td>
-            <td>{{emp.age}}</td>
-            <td>{{emp.salary}}</td>
-            <td>{{emp.join_date}}</td>
-            <td>{{emp.post}}</td>
-            <td>
-                {% comment %} <a href="{% url 'deleteEmployee' %}">DELETE</a> {% endcomment %}
-                 <a href = "{% url 'deleteEmployee' emp.id %}">DELETE</a>
-                 <a href="{% url 'updateEmployee' emp.id %}">update</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+{% block content %}
+
+<div class="card">
+
+    <!-- Header -->
+    <h1 style="margin-bottom: 20px; font-weight: 700;">
+        Employee Management
+    </h1>
+
+    <!-- Top buttons -->
+    <div style="display:flex; gap:15px; flex-wrap:wrap; justify-content:center; margin-bottom:20px;">
+
+        <form action="{% url 'createEmployeeWithForm' %}" method="get">
+            <button type="submit" class="btn btn-update">
+                + Create Employee
+            </button>
+        </form>
+
+        <form action="{% url 'filterEmployee' %}" method="get">
+            <button type="submit" class="btn btn-update">
+                Filter
+            </button>
+        </form>
+
+        <form action="{% url 'sortEmployee' 1 %}" method="get">
+            <button type="submit" class="btn btn-update">
+                Sort Asc ↑
+            </button>
+        </form>
+
+        <form action="{% url 'sortEmployee' 2 %}" method="get">
+            <button type="submit" class="btn btn-update">
+                Sort Desc ↓
+            </button>
+        </form>
+
+    </div>
+
+    <!-- Table -->
+    <table>
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Salary</th>
+                <th>Join Date</th>
+                <th>Post</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for emp in employees %}
+            <tr>
+
+                <td>{{ emp.id }}</td>
+                <td>{{ emp.name }}</td>
+                <td>{{ emp.age }}</td>
+                <td>₹ {{ emp.salary }}</td>
+                <td>{{ emp.join_date }}</td>
+                <td>{{ emp.post }}</td>
+
+                <td style="display:flex; gap:8px;">
+
+                    <!-- Update Button -->
+                    <form action="{% url 'updateEmployee' emp.id %}" method="get">
+                        <button type="submit" class="btn btn-update">
+                            Update
+                        </button>
+                    </form>
+
+                    <!-- Delete Button -->
+                    <form action="{% url 'deleteEmployee' emp.id %}" method="get">
+                        <button type="submit" class="btn btn-delete">
+                            Delete
+                        </button>
+                    </form>
+
+                </td>
+
+            </tr>
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock content %}
